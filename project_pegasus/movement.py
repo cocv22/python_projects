@@ -32,4 +32,11 @@ position = (2, 3)
 position, error = move_robot(position, 0, 4, 3.8, 3.9)
 actual_pos, estimate_pos = position 
 
-print(round(actual_pos[0], 2), round(actual_pos[1], 2), error)
+def calculate_angle(initial_angle = 1, ang_velocity = 2, t = 3):
+    return round((initial_angle + ang_velocity*t), 2)
+
+def wrap_angle(angle):
+    return round(angle % (2 * math.pi), 3)
+
+
+print(wrap_angle(16))
