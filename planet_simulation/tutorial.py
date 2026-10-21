@@ -12,7 +12,7 @@ YELLOW = (255, 255, 0)
 class CelestialBodies:
     AU = 149.6e6 * 1000
     G = 6.67428e-11
-    SCALE = 250/AU # 1 AU = to about 250 pixels
+    SCALE = 275/AU # 1 AU = to about 250 pixels
     TIMESTEP = 3600*24 # 1 day
     
     def __init__(self, x, y, radius, color, mass, temperature = None): #Initializes planet with needed attributes
@@ -38,15 +38,22 @@ def main():
     run = True
     clock = pygame.time.Clock() #This is to limit the simulation speed to a base number
     
-    sun = CelestialBodies(0, 0, 30, (254, 211, 60), 1.98892 * 10**30)
+    sun = CelestialBodies(0, 0, 50, (254, 254, 80), 1.98892 * 10**30)
     sun.sun = True
     
-    earth = CelestialBodies(-1 * CelestialBodies.AU, 0, 10, (40, 122, 184), 5.9722 * 10**24)
+    mercury = CelestialBodies(-0.4 * CelestialBodies.AU, 0, 7.7, (229, 229, 229), 3.3011 * 10**23)
+    mercury.sun = False
+    
+    venus = CelestialBodies(-0.72 * CelestialBodies.AU, 0, 19, (255, 198, 73), 4.867 * 10**24)
+    venus.sun = False
+    
+    earth = CelestialBodies(-1 * CelestialBodies.AU, 0, 20, (40, 122, 184), 5.9722 * 10**24)
     earth.sun = False
     
-    mars = CelestialBodies()
+    mars = CelestialBodies(-1.52 * CelestialBodies.AU, 0, 10.6, (193, 68, 14), 6.417 * 10**23)
+    mars.sun = False
     
-    celestial_bodies = [sun, earth]
+    celestial_bodies = [sun, mercury,  venus, earth, mars]
     
     while run:
         clock.tick(60) #updates loop 60 times per sec
