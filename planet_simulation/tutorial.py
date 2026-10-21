@@ -7,7 +7,6 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT)) #sets up the window
 pygame.display.set_caption("Planet Simulation")
 
 WHITE = (255, 255, 255)
-YELLOW = (255, 255, 0)
 
 class CelestialBodies:
     AU = 149.6e6 * 1000
