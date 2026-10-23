@@ -2,7 +2,7 @@ import pygame
 import math
 pygame.init() #initializes module
 
-WIDTH, HEIGHT = 920, 700 #For window
+WIDTH, HEIGHT = 920, 750 #For window
 WIN = pygame.display.set_mode((WIDTH, HEIGHT)) #sets up the window
 pygame.display.set_caption("Planet Simulation")
 
@@ -11,7 +11,7 @@ WHITE = (255, 255, 255)
 class CelestialBodies:
     AU = 149.6e6 * 1000
     G = 6.67428e-11
-    SCALE = 275/AU # 1 AU = to about 250 pixels
+    SCALE = 225/AU # 1 AU = to about 250 pixels
     TIMESTEP = 3600*24 # 1 day
     
     def __init__(self, x, y, radius, color, mass, temperature = None): #Initializes planet with needed attributes
@@ -32,6 +32,18 @@ class CelestialBodies:
         x = self.x * self.SCALE + WIDTH/2 #Adding the width and the height offsets the postition so that they're the center
         y = self.y * self.SCALE + HEIGHT/2
         pygame.draw.circle(win, self.color, (x, y), self.radius)
+        
+    def attraction(self, other):
+        other_x, other_y = other.x, other.y #Gets coordinates of the planet and sets it to local vars.
+        #We get the distance in between the planets
+        distance_x = other_x - self.x
+        distance_y = other_y - self.y
+        distance = math.sqrt(pow(distance_x, 2) + pow(distance_y, 2))
+        
+        if other.sun:
+            self.distance_to_sun = distance
+        
+        force = self.G * self.mass * other.mass/distance ** 2
   
 def main():
     run = True
