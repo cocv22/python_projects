@@ -2,7 +2,7 @@ import pygame
 import math
 pygame.init() #initializes module
 
-WIDTH, HEIGHT = 1080, 920 #For window
+WIDTH, HEIGHT = 1920, 1080 #For window
 WIN = pygame.display.set_mode((WIDTH, HEIGHT)) #sets up the window
 pygame.display.set_caption("Planet Simulation")
 
@@ -11,7 +11,7 @@ FONT = pygame.font.SysFont("newromans", 16)
 class CelestialBodies:
     AU = 149.6e6 * 1000
     G = 6.67428e-11
-    SCALE = 250/AU # 1 AU = to about 250 pixels
+    SCALE = 300/AU # 1 AU = to about 250 pixels
     TIMESTEP = 3600*24 # 1 day
     
     def __init__(self, x, y, radius, color, mass, temperature = None): #Initializes planet with needed attributes
