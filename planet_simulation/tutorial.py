@@ -2,7 +2,7 @@ import pygame
 import math
 pygame.init() #initializes module
 
-WIDTH, HEIGHT = 1920, 1080 #For window
+WIDTH, HEIGHT = 850, 850 #For window
 WIN = pygame.display.set_mode((WIDTH, HEIGHT)) #sets up the window
 pygame.display.set_caption("Planet Simulation")
 
