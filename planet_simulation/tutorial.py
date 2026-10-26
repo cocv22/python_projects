@@ -1,9 +1,15 @@
 import pygame
 import math
+import sys
+
 pygame.init() #initializes module
 
-WIDTH, HEIGHT = 1920, 1080 #For window
-WIN = pygame.display.set_mode((WIDTH, HEIGHT)) #sets up the window
+screen_info = pygame.display.Info()
+
+WIDTH = screen_info.current_w
+HEIGHT = screen_info.current_h
+
+WIN = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN) #sets up the window
 pygame.display.set_caption("Planet Simulation")
 
 FONT = pygame.font.SysFont("newromans", 16)
@@ -39,8 +45,10 @@ class CelestialBodies:
                 x = x * self.SCALE + WIDTH/2
                 y = y * self.SCALE + HEIGHT/2
                 updated_points.append((x, y))
+                #if len(self.orbit) > 50:
+                #    del updated_points[0]
             
-            pygame.draw.lines(win, self.color, False, updated_points, 2)
+            pygame.draw.lines(win, (128, 128, 128), False, updated_points, 2)
         
         if not self.sun:
             distance_text = FONT.render(f"{round(self.distance_to_sun/1000, 0)}km", 1, (255, 255, 255)) #How you create a text object you can draw
@@ -90,7 +98,7 @@ def main():
     run = True
     clock = pygame.time.Clock() #This is to limit the simulation speed to a base number
     
-    sun = CelestialBodies(0, 0, 50, (254, 254, 80), 1.98892 * 10**30)
+    sun = CelestialBodies(0, 0, 40, (254, 254, 80), 1.98892 * 10**30)
     sun.sun = True
     
     mercury = CelestialBodies(-0.4 * CelestialBodies.AU, 0, 7.7, (229, 229, 229), 3.3011 * 10**23)
@@ -113,18 +121,24 @@ def main():
     
     while run:
         clock.tick(60) #updates loop 60 times per sec
-        WIN.fill((0, 0, 0)) #Makes the screen a specific color (white)
+        WIN.fill((0, 0, 0)) #Makes the screen a specific color (BLACK)
         
         for event in pygame.event.get(): #gives a list of all different events that occur
             if event.type == pygame.QUIT:
                 run = False
+            
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_f:
+                pygame.display.toggle_fullscreen()
         
         for body in celestial_bodies:
             body.update_pos(celestial_bodies)
             body.draw(WIN)
         
+        pygame.display.flip()
         pygame.display.update() #Updates changes done and essentially draws them onto the screen
             
     pygame.quit()
+    sys.exit()
 
 main()        
