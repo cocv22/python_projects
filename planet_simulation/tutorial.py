@@ -2,7 +2,7 @@ import pygame
 import math
 pygame.init() #initializes module
 
-WIDTH, HEIGHT = 850, 850 #For window
+WIDTH, HEIGHT = 1920, 1080 #For window
 WIN = pygame.display.set_mode((WIDTH, HEIGHT)) #sets up the window
 pygame.display.set_caption("Planet Simulation")
 
@@ -11,7 +11,7 @@ FONT = pygame.font.SysFont("newromans", 16)
 class CelestialBodies:
     AU = 149.6e6 * 1000
     G = 6.67428e-11
-    SCALE = 300/AU # 1 AU = to about 250 pixels
+    SCALE = 225/AU # 1 AU = to about 250 pixels
     TIMESTEP = 3600*24 # 1 day
     
     def __init__(self, x, y, radius, color, mass, temperature = None): #Initializes planet with needed attributes
@@ -43,7 +43,7 @@ class CelestialBodies:
             pygame.draw.lines(win, self.color, False, updated_points, 2)
         
         if not self.sun:
-            distance_text = FONT.render(f"{round(self.distance_to_sun/1000, 3)}km", 1, (255, 255, 255)) #How you create a text object you can draw
+            distance_text = FONT.render(f"{round(self.distance_to_sun/1000, 0)}km", 1, (255, 255, 255)) #How you create a text object you can draw
             win.blit(distance_text, (x - distance_text.get_width()/2, y - distance_text.get_width()/2))
         
         pygame.draw.circle(win, self.color, (x, y), self.radius)
