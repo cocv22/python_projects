@@ -1,8 +1,5 @@
 import numpy as np
 
-# Mini Quantum Simulator
-# Phase 1: Quantum state representation
-
 # Task 1: Define the state |0>
 
 alpha = 1
