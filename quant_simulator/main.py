@@ -23,7 +23,7 @@ state_one = np.array([alpha, beta], dtype=complex)
 # Task 3: Calculate the measurement
 # probabilities for your states
 
-state_one = np.array([0,1], dtype=complex)
+state_one = np.array([0,.5], dtype=complex)
 
 alpha = state_one[0]
 beta = state_one[1]
@@ -35,4 +35,14 @@ print("Probability of 0:", prob_zero)
 print("Probability of 1:", prob_one)
 
 # Task 4: Verify that the probabilities
+
+def check_normalization(state):
+    probabilities = np.abs(state)**2
+    total_probability = np.sum(probabilities)
+    
+    return np.isclose(total_probability, 1)
+
+state_test = np.array([.3, .4], dtype=complex)
+    
+print(check_normalization(state_test))
 # for each state sum to 1
