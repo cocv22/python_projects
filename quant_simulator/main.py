@@ -9,6 +9,7 @@ H = (1/np.sqrt(2))*np.array([[1, 1], [1, -1]], dtype=complex)
 state_zero = np.array([alpha, beta], dtype=complex)
 
 h_state_zero = H @ state_zero
+h_twice_state = H@h_state_zero
 h_state_zero_prob = np.abs(h_state_zero)**2
 
 def check_normalization(state):
