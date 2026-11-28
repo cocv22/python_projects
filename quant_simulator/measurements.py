@@ -23,12 +23,18 @@ if __name__ == '__main__':
     unequal_state = np.array([np.sqrt(3)/2, 1/2], dtype=complex)
     
     first_outcome, collapsed_state = measure(unequal_state, collapse=True)
+    expected_state = zero_state if first_outcome == 0 else one_state
+    
+    assert np.allclose(expected_state, collapsed_state)
     print(first_outcome)
-    second_outcome= measure(collapsed_state)
+    
+    second_outcome = measure(collapsed_state)
     print(second_outcome)
-    
     assert first_outcome == second_outcome
-    assert ...
-    #basis state
     
-    print("Test passed")
+    print("Unequal state test passed")
+    
+    outcome, c_state = measure(one_state, collapse=True)
+    assert outcome == 1 and np.allclose(c_state, one_state)
+    
+    print("Basis state est passed")
